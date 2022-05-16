@@ -1,0 +1,21 @@
+import React from 'react'
+
+type IProps = {
+  params: any;
+  accessWhen: () => Boolean;
+  children: React.children | String;
+  fallbackComp: React.children | String;
+}
+
+const Guard : React.FC<IProps> = ({
+  params,
+  accessWhen,
+  children,
+  fallbackComp,
+}) => {
+  const isAllowedAccess = accessWhen(params)
+  if (!isAllowedAccess) return fallbackComp
+  return children
+}
+
+export default Guard
